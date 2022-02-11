@@ -8,6 +8,7 @@ import { HomeComponent } from './page/home/home.component';
 import { HeaderComponent } from './common/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './page/test/test.component';
+import { ProductEditorComponent } from './page/product-editor/product-editor.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TestComponent } from './page/test/test.component';
     SidebarComponent,
     HomeComponent,
     HeaderComponent,
-    TestComponent
+    TestComponent,
+    ProductEditorComponent,
   ],
   imports: [
     BrowserModule,
