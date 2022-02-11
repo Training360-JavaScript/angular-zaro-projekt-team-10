@@ -1,24 +1,23 @@
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BaseService<Model> {
+export abstract class BaseService<Model> {
   constructor(
-    private http: HttpClient
-  ) { }
+    private httpClient: HttpClient,
+    protected readonly entityUrl: string
+  ) { 
+    this.url = environment.backendUrl + entityUrl;
+  }
 
-  protected entityUrl: string = environment.backendUrl;
+  protected readonly url: string = '';
 
   getAll(): Observable<Model[]> {
-    return this.http.get<Model[]>(this.entityUrl);
+    return this.httpClient.get<Model[]>(this.url);
   }
 
   get(id: number): Observable<Model> {
-    const url = `${this.entityUrl}/${id}`;
-    return this.http.get<Model>(url);
+    const url = `${this.url}/${id}`;
+    return this.httpClient.get<Model>(url);
   }
 }

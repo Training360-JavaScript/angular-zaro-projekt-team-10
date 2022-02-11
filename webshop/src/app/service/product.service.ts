@@ -9,10 +9,9 @@ import { BaseService } from './base.service';
 })
 export class ProductService extends BaseService<Product> {
   constructor(
-    private http2: HttpClient
+    private http: HttpClient
   ) {
-    super(http2);
-    this.entityUrl = environment.backendUrl + 'product'
+    super(http, 'product');
   }
 
 }

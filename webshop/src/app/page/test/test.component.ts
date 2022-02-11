@@ -12,11 +12,16 @@ export class TestComponent implements OnInit {
 
   constructor(
     private productService: ProductService
-  ) { }
+  ) { 
+    const temp = new Product();
+    this.columns =  Object.getOwnPropertyNames(temp);
+  }
   
   products: Observable<Product[]> = this.productService.getAll();
   product: Observable<Product> = this.productService.get(1);
   
+  columns: string[] = [];
+
   ngOnInit(): void {
   }
 
