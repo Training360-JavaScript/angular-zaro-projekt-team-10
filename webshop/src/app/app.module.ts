@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HomeComponent } from './page/home/home.component';
 import { HeaderComponent } from './common/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TestComponent } from './page/test/test.component';
 import { ProductEditorComponent } from './page/product-editor/product-editor.component';
 
 @NgModule({
@@ -14,11 +16,13 @@ import { ProductEditorComponent } from './page/product-editor/product-editor.com
     SidebarComponent,
     HomeComponent,
     HeaderComponent,
-    ProductEditorComponent
+    TestComponent,
+    ProductEditorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
