@@ -8,3 +8,7 @@ export class Bill {
     public status: 'new' | 'paid' = 'new'
   ) {}
 }
+
+export class BillStatus {
+  static statuses: string[] = ['new', 'paid'];
+}

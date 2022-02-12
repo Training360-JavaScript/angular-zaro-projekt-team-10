@@ -7,3 +7,7 @@ export class Order {
     public status: 'new' | 'shipped' | 'paid' = 'new'
   ) {}
 }
+
+export class OrderStatus {
+  static statuses: string[] = ['new', 'shipped', 'paid'];
+}
