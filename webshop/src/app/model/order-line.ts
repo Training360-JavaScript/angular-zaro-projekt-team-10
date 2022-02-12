@@ -1,4 +1,4 @@
-export class Orderline {
+export class OrderLine {
   [key: string]: any;
 
   constructor(
