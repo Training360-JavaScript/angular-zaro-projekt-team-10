@@ -1,11 +1,14 @@
 export class Product {
-  [key: string] : any;
-  id: number = 0;
-  name: string = '';
-  type: string = '';
-  catID: number = 0;
-  description: string = '';
-  price: number = 0;
-  featured: boolean = false;
-  active: boolean = true;
+  [key: string]: any;
+
+  constructor(
+    public id: number = 0,
+    public name: string = '',
+    public description: string = '',
+    public catID: number = 0,
+    public type: string = '',
+    public price: number = 0,
+    public featured: boolean = false,
+    public active: boolean = true
+  ) {}
 }
