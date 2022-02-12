@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './page/home/home.component';
 import { TestComponent } from './page/test/test.component';
+import { ProductEditorComponent } from './page/product-editor/product-editor.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'test',
     component: TestComponent,
+  },
+  {
+    path: 'product/edit/:id',
+    component: ProductEditorComponent,
   },
 ];
 

@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-6 offset-3">
+    <form>
+      <input id="input_name" name="id" type="text" class="form-control" required hidden>
+      <div class="form-group">
+        <label for="input_name">Name</label>
+        <input id="input_name" name="name" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="select_type">Type</label>
+        <select name="type" id="select_type" class="form-control">
+          <option>type1</option>
+          <option>type2</option>
+          <option>type3</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="select_catId">catID</label>
+        <select name="catId" id="select_catId" class="form-control">
+          <option>cat1</option>
+          <option>cat2</option>
+          <option>cat3</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="text_featured">Description</label>
+        <textarea class="form-control" rows="2" id="text_featured" name="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input name="price" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <div class="form-check-inline">
+          <label class="form-check-label" for="check_Active">
+            <input type="checkbox" class="form-check-input" id="check_Active" name="active">
+            Featured
+          </label>
+          <label class="form-check-label ml-3" for="check_Featured">
+            <input type="checkbox" class="form-check-input" id="check_Featured" name="featured">
+            Active
+          </label>
+        </div>
+      </div>
+      <button class="btn btn-primary mx-2" type="button">
+        Save
+      </button>
+      <button class="btn btn-danger mx-2" type="button">
+        Delete
+      </button>
+    </form>
+  </div>
+</div>
+
+
