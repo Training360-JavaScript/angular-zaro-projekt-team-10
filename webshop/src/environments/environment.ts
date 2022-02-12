@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'https://nettuts.hu/jms/js4-002/'
+  backendUrl: 'http://localhost:3000/', //https://nettuts.hu/jms/team10/'
 };
 
 /*
