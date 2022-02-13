@@ -23,18 +23,18 @@ import { BillEditorComponent } from './page/bill-editor/bill-editor.component';
     SidebarComponent,
     HomeComponent,
     HeaderComponent,
-    GenericTableComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    TestComponent,
+    GenericTableComponent,
     ProductEditorComponent,
     CategoryEditorComponent,
     AddressEditorComponent,
     CustomerEditorComponent,
     OrderEditorComponent,
     BillEditorComponent,
+    TestComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule
   ],
