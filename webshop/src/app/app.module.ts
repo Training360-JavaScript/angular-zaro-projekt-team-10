@@ -35,8 +35,9 @@ import { BillEditorComponent } from './page/bill-editor/bill-editor.component';
     CustomerEditorComponent,
     OrderEditorComponent,
     BillEditorComponent,
+    HttpClientModule,
+    FormsModule
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
