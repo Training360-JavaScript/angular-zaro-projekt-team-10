@@ -1,43 +1,43 @@
 <div class="row">
-  <div class="col-6 offset-3">
+  <div *ngIf="product$ | async as product" class="col-6 offset-3">
     <form>
-      <input id="input_name" name="id" type="text" class="form-control" required hidden>
+      <input [(ngModel)]="product.id" name="id" type="hidden">
       <div class="form-group">
-        <label for="input_name">Name</label>
-        <input id="input_name" name="name" type="text" class="form-control" required>
+        <label for="name-id">Name</label>
+        <input [(ngModel)]="product.name" id="name-id" name="name" type="text" class="form-control" required>
       </div>
       <div class="form-group">
-        <label for="select_type">Type</label>
-        <select name="type" id="select_type" class="form-control">
+        <label for="type-id">Type</label>
+        <select id="type-id" name="type" type="text" class="form-control" required>
           <option>type1</option>
           <option>type2</option>
           <option>type3</option>
       </select>
       </div>
       <div class="form-group">
-        <label for="select_catId">catID</label>
-        <select name="catId" id="select_catId" class="form-control">
+        <label for="catID-id">catID</label>
+        <select id="carID-id" name="catID" type="text" class="form-control" required>
           <option>cat1</option>
           <option>cat2</option>
           <option>cat3</option>
       </select>
       </div>
       <div class="form-group">
-        <label for="text_featured">Description</label>
-        <textarea class="form-control" rows="2" id="text_featured" name="description"></textarea>
+        <label for="description-id">Description</label>
+        <textarea [(ngModel)]="product.description" id="description-id" name="description" type="text" class="form-control" required></textarea>
       </div>
       <div class="form-group">
-        <label>Price</label>
-        <input name="price" type="text" class="form-control" required>
+        <label for="price-id">Price</label>
+        <input [(ngModel)]="product.price" id="price-id" name="price" type="text" class="form-control" required>
       </div>
       <div class="form-group">
         <div class="form-check-inline">
-          <label class="form-check-label" for="check_Active">
-            <input type="checkbox" class="form-check-input" id="check_Active" name="active">
+          <label class="form-check-label" for="featured-id">
+            <input [(ngModel)]="product.featured" type="checkbox" class="form-check-input" id="featured" name="featured">
             Featured
           </label>
-          <label class="form-check-label ml-3" for="check_Featured">
-            <input type="checkbox" class="form-check-input" id="check_Featured" name="featured">
+          <label class="form-check-label ml-3" for="active-id">
+            <input [(ngModel)]="product.active" type="checkbox" class="form-check-input" id="active" name="active">
             Active
           </label>
         </div>
