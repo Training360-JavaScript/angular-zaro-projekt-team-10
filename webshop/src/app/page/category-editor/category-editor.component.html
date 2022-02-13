@@ -1,0 +1,23 @@
+<div class="row">
+  <div *ngIf="category$ | async as category" class="col-6 offset-3">
+    <form>
+      <input [(ngModel)]="category.id" name="id" type="hidden">
+      <div class="form-group">
+        <label for="name-id">Name</label>
+        <input [(ngModel)]="category.name" id="name-id" name="name" type="text" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="description-id">Description</label>
+        <textarea [(ngModel)]="category.description" id="description-id" name="description" type="text" class="form-control" required></textarea>
+      </div>
+      <button class="btn btn-primary mx-2" type="button">
+        Save
+      </button>
+      <button class="btn btn-danger mx-2" type="button">
+        Delete
+      </button>
+    </form>
+  </div>
+</div>
+
+
