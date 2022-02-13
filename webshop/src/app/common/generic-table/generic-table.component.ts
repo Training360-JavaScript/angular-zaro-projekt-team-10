@@ -16,9 +16,24 @@ export class GenericTableComponent<T extends {[propname: string]: any}> {
 
   @Output() deleteOne: EventEmitter<T> = new EventEmitter<T>();
 
+  sorterKey: string = 'id';
+  sorterDirection: number = 1;
+  phrase: string = '';
+
   constructor() { }
 
   onDelete(entity: T): void {
     this.deleteOne.emit(entity);
   }
+
+  onSort(key: string): void {
+    if (key === this.sorterKey) {
+      this.sorterDirection *= -1;
+    } else {
+      this.sorterDirection = 1;
+    }
+
+    this.sorterKey = key;
+  }
+
 }

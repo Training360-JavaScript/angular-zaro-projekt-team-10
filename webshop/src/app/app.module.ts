@@ -17,6 +17,9 @@ import { CustomerEditorComponent } from './page/customer-editor/customer-editor.
 import { OrderEditorComponent } from './page/order-editor/order-editor.component';
 import { BillEditorComponent } from './page/bill-editor/bill-editor.component';
 import { ProductListComponent } from './page/product-list/product-list.component';
+import { SorterPipe } from './pipe/sorter.pipe';
+import { StringCutterPipe } from './pipe/string-cutter.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { ProductListComponent } from './page/product-list/product-list.component
     BillEditorComponent,
     TestComponent,
     ProductListComponent,
+    SorterPipe,
+    StringCutterPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

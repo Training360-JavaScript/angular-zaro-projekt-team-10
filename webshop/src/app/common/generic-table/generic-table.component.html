@@ -1,25 +1,33 @@
 <!-- Add new -->
 <div class="card card-plain mx-3 d-grid gap-2">
-  <!-- <div > -->
   <button [routerLink]="['/', listName, 'edit', '']" type="button" class="btn fw-bold text-uppercase" [class]="color[1]">
     Új elem felvétele
     <i class="fa fa-angle-right mx-2"></i>
   </button>
-  <!-- </div> -->
+</div>
+
+<!-- Search -->
+<div class="mb-5">
+  <label for="">Search</label>
+  <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search for...">
 </div>
 
 <table class="table">
   <thead>
     <tr>
-      <th *ngFor="let col of columns">
-        {{ col }}
+      <th *ngFor="let col of columns" (click)="onSort(col)">
+        <div class="th_center">
+          <i *ngIf="sorterKey === col && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
+          <i *ngIf="sorterKey === col && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+          <span>{{ col | titlecase }}</span>
+        </div>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let e of entity | async">
+    <tr *ngFor="let e of entity | async | filter:phrase | sorter:sorterKey:sorterDirection">
       <td *ngFor="let col of columns">
-        {{ e[col] }}
+        {{ e[col] | stringCutter:0:30:col}}
       </td>
       <td>
         <div class="btn-group">
