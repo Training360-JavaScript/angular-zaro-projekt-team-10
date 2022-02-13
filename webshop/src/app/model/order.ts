@@ -11,3 +11,14 @@ export class Order {
 export class OrderStatus {
   static statuses: string[] = ['new', 'shipped', 'paid'];
 }
+
+export class OrderDisplay {
+  [key: string]: any;
+
+  constructor(
+    public id: number = 0,
+    public customer: string = '',
+    public status: 'new' | 'shipped' | 'paid' = 'new',
+    public orderLines: number = 0
+  ) {}
+}
