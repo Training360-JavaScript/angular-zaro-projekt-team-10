@@ -16,6 +16,10 @@ import { AddressEditorComponent } from './page/address-editor/address-editor.com
 import { CustomerEditorComponent } from './page/customer-editor/customer-editor.component';
 import { OrderEditorComponent } from './page/order-editor/order-editor.component';
 import { BillEditorComponent } from './page/bill-editor/bill-editor.component';
+import { ProductListComponent } from './page/product-list/product-list.component';
+import { SorterPipe } from './pipe/sorter.pipe';
+import { StringCutterPipe } from './pipe/string-cutter.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import { BillEditorComponent } from './page/bill-editor/bill-editor.component';
     OrderEditorComponent,
     BillEditorComponent,
     TestComponent,
+    ProductListComponent,
+    SorterPipe,
+    StringCutterPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

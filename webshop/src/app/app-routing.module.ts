@@ -8,6 +8,7 @@ import { AddressEditorComponent } from './page/address-editor/address-editor.com
 import { CustomerEditorComponent } from './page/customer-editor/customer-editor.component';
 import { OrderEditorComponent } from './page/order-editor/order-editor.component';
 import { BillEditorComponent } from './page/bill-editor/bill-editor.component';
+import { ProductListComponent } from './page/product-list/product-list.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'bill/edit/:id',
     component: BillEditorComponent,
+  },
+  {
+    path: 'products',
+    component: ProductListComponent,
   },
 ];
 
