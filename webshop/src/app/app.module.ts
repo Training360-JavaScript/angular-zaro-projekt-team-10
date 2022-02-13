@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { GenericTableModule } from '@angular-generic-table/core';
-// import { GenericTableModule } from 'angular-generic-table';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HomeComponent } from './page/home/home.component';
+import { GenericTableComponent } from './common/generic-table/generic-table.component';
 import { HeaderComponent } from './common/header/header.component';
 
 @NgModule({
@@ -14,12 +14,13 @@ import { HeaderComponent } from './common/header/header.component';
     AppComponent,
     SidebarComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    GenericTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GenericTableModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
