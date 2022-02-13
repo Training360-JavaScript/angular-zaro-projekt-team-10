@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HomeComponent } from './page/home/home.component';
+import { GenericTableComponent } from './common/generic-table/generic-table.component';
 import { HeaderComponent } from './common/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TestComponent } from './page/test/test.component';
@@ -22,6 +23,11 @@ import { BillEditorComponent } from './page/bill-editor/bill-editor.component';
     SidebarComponent,
     HomeComponent,
     HeaderComponent,
+    GenericTableComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
     TestComponent,
     ProductEditorComponent,
     CategoryEditorComponent,
