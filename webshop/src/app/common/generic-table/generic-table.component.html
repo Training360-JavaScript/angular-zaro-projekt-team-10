@@ -15,7 +15,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th *ngFor="let col of columns" (click)="onSort(col)">
+      <th *ngFor="let col of columns;index as i" draggable="true" (dragstart)="dragStartColumn(i)"
+      (dragover)="allowDrop($event)" (drop)="dropColumn(i, columns)" (click)="onSort(col)">
         <div class="th_center">
           <i *ngIf="sorterKey === col && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
           <i *ngIf="sorterKey === col && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
