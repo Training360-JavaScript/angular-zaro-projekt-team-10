@@ -1,1 +1,12 @@
-<app-generic-table [listName]="listName" [entity]="orders$" [columns]="columns" [color]="color" (deleteOne)="onDeleteOne($event)"></app-generic-table>
+<app-generic-table 
+    [listName]="orderListName" 
+    [entity]="orders$" 
+    [columns]="orderColumns" 
+    [color]="color"
+    [detailColums]="orderLineColumns" 
+    [detailLines]="orderLines"
+    [detailListName]="orderLineListName"
+    (deleteOne)="onDeleteOne($event)"
+    (openDetail)="onOpenDetail($event)" 
+    (deleteDetail)="onDeleteDetail($event)">
+  </app-generic-table>
