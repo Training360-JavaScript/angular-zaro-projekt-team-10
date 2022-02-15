@@ -23,22 +23,43 @@
           <span>{{ col | titlecase }}</span>
         </div>
       </th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let e of entity | async | filter:phrase | sorter:sorterKey:sorterDirection">
-      <td *ngFor="let col of columns">
-        {{ e[col] | stringCutter:0:30:col}}
-      </td>
-      <td>
-        <div class="btn-group">
-          <button [routerLink]="['/', listName, 'edit', e.id]" class="btn btn-small" [class]="color[0]"><i
-              class="fa fa-pencil"></i></button>
-          <button *ngIf="e.status!=='stornózott'" (click)="onDelete(e)" class="btn btn-danger">
-            <i class="fa fa-trash"></i>
-          </button>
-        </div>
-      </td>
-    </tr>
+    <ng-container *ngFor="let e of entity | async | filter:phrase | sorter:sorterKey:sorterDirection">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{ e[col] | stringCutter:0:30:col}}
+        </td>
+        <td>
+          <div class="btn-group">
+            <button [routerLink]="['/', listName, 'edit', e.id]" class="btn btn-small" [class]="color[0]">
+              <i class="fa fa-pencil"></i></button>
+            <button *ngIf="e.status!=='stornózott'" (click)="onDelete(e)" class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </button>
+            <button *ngIf="detailColums.length > 0" [id]="'detailbutton-' + e.id"
+                (click)="onDetailOpen(e)" class="btn btn-primary"
+                data-toggle="collapse" [attr.data-target]="'#detail-' + e.id"
+                aria-expanded="false" [attr.aria-controls] ="'detail-' + e.id">
+              <i [id]="'detailcaret-' + e.id" class="fa fa-caret-down"></i>
+            </button>            
+          </div>
+        </td>
+      </tr>
+      <tr [id]="'detail-' + e.id" *ngIf="detailColums.length > 0" class="detail collapse">
+        <td></td>
+        <td [attr.colspan]="columns.length">
+          <app-generic-table 
+            [entity]="getDetailLines(e.id)" 
+            [listName]="detailListName"
+            [columns]="detailColums" 
+            [color]="color"
+            (deleteOne)="onDeleteDetail($event.id)">
+          </app-generic-table>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
