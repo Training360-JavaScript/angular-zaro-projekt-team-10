@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/model/customer';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
@@ -19,9 +19,15 @@ export class CustomerEditorComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private CustomerService: CustomerService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
   }
 
+  onUpdate(customer: Customer): void {
+    this.CustomerService.update(customer).subscribe(
+      customer => this.router.navigate(['/', 'customer'])
+    )
+  }
 }
