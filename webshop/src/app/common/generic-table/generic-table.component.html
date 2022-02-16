@@ -28,7 +28,15 @@
   <tbody>
     <tr *ngFor="let e of entity | async | filter:phrase | sorter:sorterKey:sorterDirection">
       <td *ngFor="let col of columns">
-        {{ e[col] | stringCutter:0:30:col}}
+        <ng-container *ngIf="e[col]===true">
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+        </ng-container>
+        <ng-container *ngIf="e[col]===false">
+          <i class="fa fa-times-circle" aria-hidden="true"></i>
+        </ng-container>
+        <ng-container *ngIf="e[col]!==false && e[col]!==true">
+          {{ e[col] | stringCutter:0:30:col }}
+        </ng-container>
       </td>
       <td>
         <div class="btn-group">

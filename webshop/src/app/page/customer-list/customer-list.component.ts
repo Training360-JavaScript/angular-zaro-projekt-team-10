@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Customer } from 'src/app/model/customer';
+import { Customer, CustomerWithAddress } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
@@ -10,25 +10,24 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  customers$: Observable<Customer[]> = this.customerService.getAll();
+  customers$: Observable<CustomerWithAddress[]> = this.customerService.addAddress();
   columns: string[] = [];
   listName: string = 'customer';
   color: string[] = ['bg-success', 'btn-outline-success'];
   constructor(
     private customerService: CustomerService,
   ) {
-    const temp = new Customer();
+    const temp = new CustomerWithAddress();
     this.columns =  Object.getOwnPropertyNames(temp);
-
   }
 
   ngOnInit(): void {
   }
 
   onDeleteOne(customer: Customer): void {
-    if (window.confirm('Biztosan törli ezt a terméket?')) {
+    if (window.confirm('Biztosan törli ezt a vásárlót?')) {
       this.customerService.delete(customer.id).subscribe(
-        () => this.customers$ = this.customerService.getAll()
+        () => this.customers$ = this.customerService.addAddress()
       )
     }
   }

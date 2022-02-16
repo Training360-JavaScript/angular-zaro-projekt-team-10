@@ -27,7 +27,7 @@ export class OrderListComponent implements OnInit {
   }
 
   onDeleteOne(order: Order): void {
-    if (window.confirm('Biztosan törli ezt a terméket?')) {
+    if (window.confirm('Biztosan törli ezt a megrendelést?')) {
       this.orderService.delete(order.id).subscribe(
         () => this.orders$ = this.orderService.getAll()
       )
