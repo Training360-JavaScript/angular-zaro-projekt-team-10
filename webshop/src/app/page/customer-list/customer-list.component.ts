@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
 
@@ -10,12 +11,21 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  customers$: Observable<Customer[]> = this.customerService.getAll();
+  customers$: Observable<Customer[]> = this.activatedRoute.queryParams.pipe(
+    switchMap((params) => {
+      if(params['actives']) {
+        return this.customerService.actives();
+      } else {
+        return this.customerService.getAll();
+      }
+    }) 
+  );
   columns: string[] = [];
   listName: string = 'customer';
   color: string[] = ['bg-success', 'btn-outline-success'];
   constructor(
     private customerService: CustomerService,
+    private activatedRoute: ActivatedRoute,
   ) {
     const temp = new Customer();
     this.columns =  Object.getOwnPropertyNames(temp);

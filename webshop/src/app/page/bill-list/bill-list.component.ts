@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 import { Bill } from 'src/app/model/bill';
 import { BillService } from 'src/app/service/bill.service';
 
@@ -11,13 +12,23 @@ import { BillService } from 'src/app/service/bill.service';
 export class BillListComponent implements OnInit {
 
 
-  bills$: Observable<Bill[]> = this.billService.getAll();
+  bills$: Observable<Bill[]> = this.activatedRoute.queryParams.pipe(
+    switchMap((params) => {
+      console.log(params);
+      if(params['status']) {
+        return this.billService.filtered(params['status']);
+      } else {
+        return this.billService.getAll();
+      }
+    }) 
+  )
   columns: string[] = [];
   listName: string = 'bill';
   color: string[] = ['bg-success', 'btn-outline-success'];
 
   constructor(
     private billService: BillService,
+    private activatedRoute: ActivatedRoute,
   ) {
     const temp = new Bill();
     this.columns =  Object.getOwnPropertyNames(temp);
