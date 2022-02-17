@@ -9,7 +9,7 @@
             <a [routerLink]="['/', 'customer-editor', customer.id]">{{ customer.firstName}} {{ customer.lastName }}</a>
           </li>
         </ul>
-        <a [routerLink]="['/', 'customers']">more ...</a>
+        <a [routerLink]="['/', 'customers']" [queryParams]="{ actives: true }">more ...</a>
       </div>
       </div>
   </div>
@@ -23,7 +23,7 @@
               <a [routerLink]="['/', 'product-editor', product.id]">{{ product.name }}</a>
           </li>
         </ul>
-        <a [routerLink]="['/', 'products']">more ...</a>
+        <a [routerLink]="['/', 'products']" [queryParams]="{ actives: true }">more ...</a>
       </div>
     </div>
   </div>

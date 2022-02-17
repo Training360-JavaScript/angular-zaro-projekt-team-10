@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map, Observable, switchMap } from 'rxjs';
 import { Order } from 'src/app/model/order';
 import { OrderLine } from 'src/app/model/order-line';
 import { OrderLineService } from 'src/app/service/order-line.service';
@@ -12,7 +13,16 @@ import { OrderService } from 'src/app/service/order.service';
 })
 export class OrderListComponent implements OnInit {
 
-  orders$: Observable<Order[]> = this.orderService.getAll();
+  orders$: Observable<Order[]> = this.activatedRoute.queryParams.pipe(
+    switchMap((params) => {
+      console.log(params);
+      if(params['status']) {
+        return this.orderService.filtered(params['status']);
+      } else {
+        return this.orderService.getAll();
+      }
+    }) 
+  )
   orderColumns: string[] = [];
   orderListName: string = 'order';
 
@@ -25,6 +35,7 @@ export class OrderListComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private orderLineService: OrderLineService,
+    private activatedRoute: ActivatedRoute,
   ) {
     const tempOrder = new Order();
     this.orderColumns =  Object.getOwnPropertyNames(tempOrder);

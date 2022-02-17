@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -10,13 +11,22 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products$: Observable<Product[]> = this.productService.getAll();
+  products$: Observable<Product[]> = this.activatedRoute.queryParams.pipe(
+    switchMap((params) => {
+      if(params['actives']) {
+        return this.productService.actives();
+      } else {
+        return this.productService.getAll();
+      }
+    }) 
+  );
   columns: string[] = [];
   listName: string = 'product';
   color: string[] = ['bg-success', 'btn-outline-success'];
 
   constructor(
     private productService: ProductService,
+    private activatedRoute: ActivatedRoute,
   ) {
     const temp = new Product();
     this.columns =  Object.getOwnPropertyNames(temp);
