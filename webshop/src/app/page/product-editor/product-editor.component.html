@@ -18,11 +18,9 @@
       </div>
       <div class="form-group">
         <label for="catID-id">catID</label>
-        <select id="carID-id" name="catID" type="text" class="form-control" required>
-          <option>cat1</option>
-          <option>cat2</option>
-          <option>cat3</option>
-      </select>
+        <select id="carID-id" name="catID" type="text" class="form-control" required [(ngModel)]="product.catID" >
+          <option *ngFor="let category of categories$ | async" [value]="category.id">{{ category.name }}</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="description-id">Description</label>

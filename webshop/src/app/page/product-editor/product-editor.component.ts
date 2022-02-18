@@ -4,6 +4,9 @@ import { Observable, switchMap } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/service/category.service';
+import { Category } from 'src/app/model/category';
+import { BillStatus } from 'src/app/model/bill';
 
 @Component({
   selector: 'app-product-editor',
@@ -16,11 +19,14 @@ export class ProductEditorComponent implements OnInit {
     switchMap( params => this.ProductService.get(params['id']))
   )
 
+  categories$: Observable<Category[]> = this.categoryService.getAll();
+  
   constructor(
     private activatedRoute: ActivatedRoute,
     private ProductService: ProductService,
+    private categoryService: CategoryService,
     private router: Router,
-  ) { }
+  ) {   }
 
   ngOnInit(): void {
   }
