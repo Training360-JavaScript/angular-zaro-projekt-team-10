@@ -6,7 +6,7 @@
         <h5 class="card-title">Active Customers<span class="badge badge-primary float-right">{{ (activeCustomers | async)?.count }}</span></h5>
         <ul class="list-group">
           <li *ngFor="let customer of (activeCustomers | async)?.random5" class="list-group-item">
-            <a [routerLink]="['/', 'customer-editor', customer.id]">{{ customer.firstName}} {{ customer.lastName }}</a>
+            <a [routerLink]="['/', 'customer', 'edit', customer.id]">{{ customer.firstName}} {{ customer.lastName }}</a>
           </li>
         </ul>
         <a [routerLink]="['/', 'customers']" [queryParams]="{ actives: true }">more ...</a>
@@ -20,7 +20,7 @@
         <h5 class="card-title">Active Products<span class="badge badge-primary float-right">{{ (activeProducts | async)?.count }}</span></h5>
         <ul class="list-group">
           <li *ngFor="let product of (activeProducts | async)?.random5" class="list-group-item">
-              <a [routerLink]="['/', 'product-editor', product.id]">{{ product.name }}</a>
+              <a [routerLink]="['/', 'product', 'edit', product.id]">{{ product.name }}</a>
           </li>
         </ul>
         <a [routerLink]="['/', 'products']" [queryParams]="{ actives: true }">more ...</a>
@@ -34,7 +34,7 @@
         <h5 class="card-title">New Orders<span class="badge badge-primary float-right">{{ (newOrders | async)?.count }}</span></h5>
         <ul class="list-group">
           <li *ngFor="let order of (newOrders | async)?.top5" class="list-group-item">
-              <a [routerLink]="['/', 'order-editor', order.id]">{{ order.customer }} ({{ order.orderLines }} products)</a>
+              <a [routerLink]="['/', 'order', 'edit', order.id]">{{ order.customer }} ({{ order.orderLines }} products)</a>
           </li>
         </ul>
         <a [routerLink]="['/', 'orders']" [queryParams]="{ status: 'new' }">more ...</a>
@@ -48,7 +48,7 @@
         <h5 class="card-title">Shipped Orders<span class="badge badge-primary float-right">{{ (shippedOrders | async)?.count }}</span></h5>
         <ul class="list-group">
           <li *ngFor="let order of (shippedOrders | async)?.top5" class="list-group-item">
-              <a [routerLink]="['/', 'order-editor', order.id]">{{ order.customer }} ({{ order.orderLines }} products)</a>
+              <a [routerLink]="['/', 'order', 'edit', order.id]">{{ order.customer }} ({{ order.orderLines }} products)</a>
           </li>
         </ul>
         <a [routerLink]="['/', 'orders']" [queryParams]="{ status: 'shipped' }">more ...</a>
@@ -66,7 +66,7 @@
         <h5 class="card-title">Bills wait to pay<span class="badge badge-primary float-right">{{ (notPayedBills | async)?.count }}</span></h5>
         <ul class="list-group">
           <li *ngFor="let bill of (notPayedBills | async)?.top5" class="list-group-item">
-              <a [routerLink]="['/', 'order-editor', bill.id]">{{ bill.id }}: {{ bill.amount }} Ft</a>
+              <a [routerLink]="['/', 'bill', 'edit', bill.id]">{{ bill.id }}: {{ bill.amount }} Ft</a>
           </li>
         </ul>
         <a [routerLink]="['/', 'bills']" [queryParams]="{ status: 'new' }">Total: {{ (notPayedBills | async)?.amount }} Ft ...</a>
