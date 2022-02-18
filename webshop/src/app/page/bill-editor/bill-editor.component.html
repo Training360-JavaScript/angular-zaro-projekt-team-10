@@ -1,24 +1,27 @@
 <div class="row">
   <div *ngIf="bill$ | async as bill" class="col-6 offset-3">
-    <form>
+    <form #billForm="ngForm" (ngSubmit)="onUpdate(bill)">
       <input [(ngModel)]="bill.id" name="id" type="hidden">
       <div class="form-group">
         <label for="bill-id">OrderID</label>
-        <input [(ngModel)]="bill.orderID" id="order-id" name="orderID" type="text" class="form-control" required>
+        <input [(ngModel)]="bill.orderID" id="order-id" name="orderID" type="text" class="form-control" disabled required>
       </div>
       <div class="form-group">
         <label for="amount-id">Amount</label>
-        <input [(ngModel)]="bill.amount" id="amount-id" name="amount" type="text" class="form-control" required>
+        <input pattern="^[0-9]{0,}$" [(ngModel)]="bill.amount" id="amount-id" name="amount" type="text" class="form-control" #amount="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="amount.valid || amount.pristine">
+        Amount is required!
       </div>
       <div class="form-group">
         <label for="status-id">Status</label>
-        <input [(ngModel)]="bill.status" id="status-id" name="status" type="text" class="form-control" required>
+        <input [(ngModel)]="bill.status" id="status-id" name="status" type="text" class="form-control" #status="ngModel" required>
       </div>
-      <button class="btn btn-primary mx-2" type="button">
+      <div class="error-feedback" [hidden]="status.valid || status.pristine">
+        Status is required!
+      </div>
+      <button [disabled]="billForm.invalid" class="btn btn-primary mx-2">
         Save
-      </button>
-      <button class="btn btn-danger mx-2" type="button">
-        Delete
       </button>
     </form>
   </div>

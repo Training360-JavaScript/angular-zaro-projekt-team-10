@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/model/category';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { CategoryService } from 'src/app/service/category.service';
 
@@ -19,9 +19,16 @@ export class CategoryEditorComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private CategoryService: CategoryService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
+  }
+
+  onUpdate(category: Category): void {
+    this.CategoryService.update(category).subscribe(
+      category => this.router.navigate(['/', 'categories'])
+    )
   }
 
 }

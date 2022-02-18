@@ -1,18 +1,20 @@
 <div class="row">
   <div *ngIf="product$ | async as product" class="col-6 offset-3">
-    <form>
+    <form #productForm="ngForm" (ngSubmit)="onUpdate(product)">
       <input [(ngModel)]="product.id" name="id" type="hidden">
       <div class="form-group">
         <label for="name-id">Name</label>
-        <input [(ngModel)]="product.name" id="name-id" name="name" type="text" class="form-control" required>
+        <input pattern="^[a-űA-Ű\s]{5,}$" [(ngModel)]="product.name" id="name-id" name="name" type="text" class="form-control" #Name="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="Name.valid || Name.pristine">
+        The name must be at least 5 character!
       </div>
       <div class="form-group">
         <label for="type-id">Type</label>
-        <select id="type-id" name="type" type="text" class="form-control" required>
-          <option>type1</option>
-          <option>type2</option>
-          <option>type3</option>
-      </select>
+        <input [(ngModel)]="product.type" id="type-id" name="type" type="text" class="form-control" #type="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="type.valid || type.pristine">
+        Type is required!
       </div>
       <div class="form-group">
         <label for="catID-id">catID</label>
@@ -24,11 +26,17 @@
       </div>
       <div class="form-group">
         <label for="description-id">Description</label>
-        <textarea [(ngModel)]="product.description" id="description-id" name="description" type="text" class="form-control" required></textarea>
+        <textarea pattern="^[a-űA-Ű\s]{5,}$" [(ngModel)]="product.description" id="description-id" name="description" type="text" class="form-control" #description="ngModel" required></textarea>
+      </div>
+      <div class="error-feedback" [hidden]="description.valid || description.pristine">
+        The description must be at least 5 character!
       </div>
       <div class="form-group">
         <label for="price-id">Price</label>
-        <input [(ngModel)]="product.price" id="price-id" name="price" type="text" class="form-control" required>
+        <input pattern="^[0-9]{0,10}$" [(ngModel)]="product.price" id="price-id" name="price" type="text" class="form-control" #price="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="price.valid || price.pristine">
+        Price is required!
       </div>
       <div class="form-group">
         <div class="form-check-inline">
@@ -42,11 +50,8 @@
           </label>
         </div>
       </div>
-      <button class="btn btn-primary mx-2" type="button">
+      <button [disabled]="productForm.invalid" class="btn btn-primary mx-2">
         Save
-      </button>
-      <button class="btn btn-danger mx-2" type="button">
-        Delete
       </button>
     </form>
   </div>
