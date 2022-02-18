@@ -1,32 +1,44 @@
 <div class="row">
   <div *ngIf="address$ | async as address" class="col-6 offset-3">
-    <form>
+    <form #addressForm="ngForm" (ngSubmit)="onUpdate(address)">
       <input [(ngModel)]="address.id" name="id" type="hidden">
       <div class="form-group">
         <label for="zip-id">Zip</label>
-        <input [(ngModel)]="address.zip" id="zip-id" name="zip" type="text" class="form-control" required>
+        <input pattern="^[0-9]{0,5}$" [(ngModel)]="address.zip" id="zip-id" name="zip" type="text" class="form-control" #zip="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="zip.valid || zip.pristine">
+        The zip length is between 1 and 5 number!
       </div>
       <div class="form-group">
         <label for="country-id">Country</label>
-        <input [(ngModel)]="address.country" id="country-id" name="country" type="text" class="form-control" required>
+        <input pattern="^[a-űA-Ű]{5,20}$" [(ngModel)]="address.country" id="country-id" name="country" type="text" class="form-control" #country="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="country.valid || country.pristine">
+        The Country must be at least 5 character!
       </div>
       <div class="form-group">
         <label for="city-id">City</label>
-        <input [(ngModel)]="address.city" id="city-id" name="city" type="text" class="form-control" required>
+        <input pattern="^[a-űA-Ű]{5,20}$" [(ngModel)]="address.city" id="city-id" name="city" type="text" class="form-control" #city="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="city.valid || city.pristine">
+        The City must be at least 5 character!
       </div>
       <div class="form-group">
         <label for="street-id">Street</label>
-        <input [(ngModel)]="address.street" id="street-id" name="street" type="text" class="form-control" required>
+        <input pattern="^[a-űA-Ű]{5,20}$" [(ngModel)]="address.street" id="street-id" name="street" type="text" class="form-control" #street="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="street.valid || street.pristine">
+        The Street must be at least 5 character!
       </div>
       <div class="form-group">
         <label for="notes-id">Notes</label>
-        <input [(ngModel)]="address.notes" id="notes-id" name="notes" type="text" class="form-control" required>
+        <input pattern="^[a-űA-Ű\s]{5,}$" [(ngModel)]="address.notes" id="notes-id" name="notes" type="text" class="form-control" #notes="ngModel" required>
       </div>
-      <button class="btn btn-primary mx-2" type="button">
+      <div class="error-feedback" [hidden]="notes.valid || notes.pristine">
+        The notes must be at least 5 character!
+      </div>
+      <button [disabled]="addressForm.invalid" class="btn btn-primary mx-2">
         Save
-      </button>
-      <button class="btn btn-danger mx-2" type="button">
-        Delete
       </button>
     </form>
   </div>

@@ -18,11 +18,14 @@
       </div>
       <div class="form-group">
         <label for="email-id">Email</label>
-        <input [(ngModel)]="customer.email" id="email-id" name="email" type="email" class="form-control" required>
+        <input pattern="^[^@]+@[^@]+\.[^@]{2,3}$" [(ngModel)]="customer.email" id="email-id" name="email" type="email" class="form-control" #email="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="email.valid || email.pristine">
+        The email address must be valid!
       </div>
       <div class="form-group">
         <label for="address-id">Address</label>
-        <input pattern="^[1-9]{0,5}$" [(ngModel)]="customer.addressID" id="address-id" name="address" type="text" class="form-control" #address="ngModel" required>
+        <input pattern="^[0-9]{0,5}$" [(ngModel)]="customer.addressID" id="address-id" name="address" type="text" class="form-control" #address="ngModel" required>
       </div>
       <div class="error-feedback" [hidden]="address.valid || address.pristine">
         The address length is between 1 and 5 number!

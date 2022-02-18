@@ -1,20 +1,23 @@
 <div class="row">
   <div *ngIf="category$ | async as category" class="col-6 offset-3">
-    <form>
+    <form #categoryForm="ngForm" (ngSubmit)="onUpdate(category)">
       <input [(ngModel)]="category.id" name="id" type="hidden">
       <div class="form-group">
         <label for="name-id">Name</label>
-        <input [(ngModel)]="category.name" id="name-id" name="name" type="text" class="form-control" required>
+        <input pattern="^[a-űA-Ű\s]{5,}$" [(ngModel)]="category.name" id="name-id" name="name" type="text" class="form-control" #Name="ngModel" required>
+      </div>
+      <div class="error-feedback" [hidden]="Name.valid || Name.pristine">
+        The name must be at least 5 character!
       </div>
       <div class="form-group">
         <label for="description-id">Description</label>
-        <textarea [(ngModel)]="category.description" id="description-id" name="description" type="text" class="form-control" required></textarea>
+        <textarea pattern="^[a-űA-Ű\s]{5,}$" [(ngModel)]="category.description" id="description-id" name="description" type="text" class="form-control" #description="ngModel" required></textarea>
       </div>
-      <button class="btn btn-primary mx-2" type="button">
+      <div class="error-feedback" [hidden]="description.valid || description.pristine">
+        The description must be at least 5 character!
+      </div>
+      <button [disabled]="categoryForm.invalid" class="btn btn-primary mx-2">
         Save
-      </button>
-      <button class="btn btn-danger mx-2" type="button">
-        Delete
       </button>
     </form>
   </div>
