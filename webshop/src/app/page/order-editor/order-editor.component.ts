@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from 'src/app/service/order.service';
+import { Customer } from 'src/app/model/customer';
+import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
   selector: 'app-order-editor',
@@ -16,9 +18,12 @@ export class OrderEditorComponent implements OnInit {
     switchMap( params => this.OrderService.get(params['id']))
   )
 
+  customers$: Observable<Customer[]> = this.CustomerService.getAll();
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private OrderService: OrderService,
+    private CustomerService: CustomerService,
     private router: Router,
   ) { }
 

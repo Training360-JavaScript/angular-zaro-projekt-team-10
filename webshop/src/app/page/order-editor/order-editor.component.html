@@ -3,16 +3,19 @@
     <form #orderForm="ngForm" (ngSubmit)="onUpdate(order)">
       <input [(ngModel)]="order.id" name="id" type="hidden">
       <div class="form-group">
-        <label for="customer-id">CustomerID</label>
-        <input pattern="^[0-9]{0,}$" [(ngModel)]="order.customerID" id="customer-id" name="customerID" type="text" class="form-control" #CustomerID="ngModel" required>
-      </div>
-      <div class="error-feedback" [hidden]="CustomerID.valid || CustomerID.pristine">
-        CustomerID is required!
-      </div>
+        <label for="customer-id">Customer</label>
+        <select [(ngModel)]="order.customerID" id="customer-id" name="customerID" type="text" class="form-control" #CustomerID="ngModel" required>
+          <option *ngFor="let customer of customers$ | async" [value]="customer.id">{{ customer.firstName }} {{ customer.lastName }}</option>
+        </select>
+        </div>
       <div class="form-group">
         <label for="status-id">Status</label>
-        <input [(ngModel)]="order.status" id="status-id" name="status" type="text" class="form-control" #status="ngModel" required>
-      </div>
+        <select [(ngModel)]="order.status" id="status-id" name="status" type="text" class="form-control" #status="ngModel" required>
+        <option>new</option>
+        <option>shipped</option>
+        <option>paid</option>
+        </select>
+        </div>
       <div class="error-feedback" [hidden]="status.valid || status.pristine">
         Status is required!
       </div>
