@@ -1,7 +1,7 @@
 import { Bill } from "./bill";
 import { Customer } from "./customer";
 import { OrderDisplay } from "./order";
-import { Product, ProductDisplay } from "./product";
+import { Product } from "./product";
 
 export class ActiveCustomers {
   [key: string]: any;
@@ -17,7 +17,7 @@ export class ActiveProducts {
 
   constructor(
     public count: number = 0,
-    public random5: ProductDisplay[] = [],
+    public random5: Product[] = [],
   ) {}
 }
 

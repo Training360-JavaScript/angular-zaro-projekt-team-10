@@ -12,19 +12,3 @@ export class Product {
     public active: boolean = true
   ) {}
 }
-
-export class ProductDisplay {
-  [key: string]: any;
-
-  constructor(
-    public id: number = 0,
-    public name: string = '',
-    public description: string = '',
-    public catID: number = 0,
-    public category: string = '',
-    public type: string = '',
-    public price: number = 0,
-    public featured: boolean = false,
-    public active: boolean = true
-  ) {}
-}

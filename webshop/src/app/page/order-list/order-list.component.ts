@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
-import { Order, OrderDisplay } from 'src/app/model/order';
-import { OrderLine, OrderLineDisplay } from 'src/app/model/order-line';
+import { Order } from 'src/app/model/order';
+import { OrderLine } from 'src/app/model/order-line';
 import { OrderLineService } from 'src/app/service/order-line.service';
 import { OrderService } from 'src/app/service/order.service';
 
@@ -12,13 +12,23 @@ import { OrderService } from 'src/app/service/order.service';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-  orders$: Observable<OrderDisplay[]> = new Observable<OrderDisplay[]>();
+
+  orders$: Observable<Order[]> = this.activatedRoute.queryParams.pipe(
+    switchMap((params) => {
+      console.log(params);
+      if(params['status']) {
+        return this.orderService.filtered(params['status']);
+      } else {
+        return this.orderService.getAll();
+      }
+    }) 
+  )
   orderColumns: string[] = [];
   orderListName: string = 'order';
 
   color: string[] = ['bg-success', 'btn-outline-success'];
 
-  orderLines: Map<number, Observable<OrderLineDisplay[]>> = new Map<number, Observable<OrderLineDisplay[]>>();
+  orderLines: Map<number, Observable<OrderLine[]>> = new Map<number, Observable<OrderLine[]>>();
   orderLineColumns: string[] = [];
   orderLineListName: string = 'orderline';
 
@@ -27,48 +37,27 @@ export class OrderListComponent implements OnInit {
     private orderLineService: OrderLineService,
     private activatedRoute: ActivatedRoute,
   ) {
-    const tempOrder = new OrderDisplay();
+    const tempOrder = new Order();
     this.orderColumns =  Object.getOwnPropertyNames(tempOrder);
 
-    const tempOrderLine = new OrderLineDisplay();
+    const tempOrderLine = new OrderLine();
     this.orderLineColumns =  Object.getOwnPropertyNames(tempOrderLine);
-    console.log(this.orderLineColumns);
-    this.orderLineColumns.splice(this.orderLineColumns.findIndex(col => col === 'orderID'), 1);
-    this.orderLineColumns.splice(this.orderLineColumns.findIndex(col => col === 'productID'), 1);
-
-    console.log(this.orderLineColumns);
-
-    this.getItems();
   }
 
   ngOnInit(): void {
   }
 
-  getItems(): void {
-    this.orders$ = this.activatedRoute.queryParams.pipe(
-      switchMap((params) => {
-        console.log(params);
-        if(params['status']) {
-          return this.orderService.getFilteredDisplay(params['status']);
-        } else {
-          return this.orderService.getAllDisplay();
-        }
-      }) 
-    )
-  
-  }
-
   onDeleteOne(order: Order): void {
     if (window.confirm('Biztosan törli ezt a megrendelést?')) {
       this.orderService.delete(order.id).subscribe(
-        () => this.getItems()
+        () => this.orders$ = this.orderService.getAll()
       )
     }
   }
 
   onOpenDetail(orderId: number): void {
     if (!this.orderLines.has(orderId)) {
-      this.orderLines.set(orderId, this.orderLineService.getAllDisplayByOrderId(orderId));
+      this.orderLines.set(orderId, this.orderLineService.getAllByOrderId(orderId));
     }
   }
 
@@ -79,7 +68,7 @@ export class OrderListComponent implements OnInit {
           this.orderLineService.delete(orderLineId).subscribe(             
             () => {
               console.log(orderLine.orderID);
-              this.orderLines.set(orderLine.orderID, this.orderLineService.getAllDisplayByOrderId(orderLine.orderID));
+              this.orderLines.set(orderLine.orderID, this.orderLineService.getAllByOrderId(orderLine.orderID));
             }
           )
         }
