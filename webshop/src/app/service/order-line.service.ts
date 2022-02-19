@@ -10,7 +10,7 @@ import { BaseService } from './base.service';
 })
 export class OrderLineService extends BaseService<OrderLine> {
   constructor(private http: HttpClient) {
-    super(http, 'orderline');
+    super(http, 'order-line');
   }
 
   getAllByOrderId(orderId: number): Observable<OrderLine[]> {
