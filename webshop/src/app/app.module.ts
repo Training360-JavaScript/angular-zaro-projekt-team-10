@@ -24,6 +24,7 @@ import { CustomerListComponent } from './page/customer-list/customer-list.compon
 import { OrderListComponent } from './page/order-list/order-list.component';
 import { BillListComponent } from './page/bill-list/bill-list.component';
 import { CategoryListComponent } from './page/category-list/category-list.component';
+import { OrderlineEditorComponent } from './page/orderline-editor/orderline-editor.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CategoryListComponent } from './page/category-list/category-list.compon
     OrderListComponent,
     BillListComponent,
     CategoryListComponent,
+    OrderlineEditorComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@
         Type is required!
       </div>
       <div class="form-group">
-        <label for="catID-id">catID</label>
+        <label for="catID-id">Category</label>
         <select id="carID-id" name="catID" type="text" class="form-control" required [(ngModel)]="product.catID" >
           <option *ngFor="let category of categories$ | async" [value]="category.id">{{ category.name }}</option>
         </select>
