@@ -11,4 +11,12 @@ export class AddressService extends BaseService<Address> {
   constructor(private http: HttpClient) {
     super(http, 'address');
   }
+
+  addressToString(address: Address | undefined): string {
+    if (address) {
+      return `${address.street}, ${address.zip} / ${address.city} (${address.country})`;
+    } else {
+      return '';
+    }
+  }
 }
