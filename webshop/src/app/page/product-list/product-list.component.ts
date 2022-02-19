@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { Product, ProductDisplay } from 'src/app/model/product';
+import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -11,11 +11,13 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products$: Observable<ProductDisplay[]> = this.activatedRoute.queryParams.pipe(
+  products$: Observable<Product[]> = this.activatedRoute.queryParams.pipe(
     switchMap((params) => {
-      return params['actives'] 
-        ? this.productService.getActivesDisplay() 
-        : this.productService.getAllDisplay();
+      if(params['actives']) {
+        return this.productService.actives();
+      } else {
+        return this.productService.getAll();
+      }
     }) 
   );
   columns: string[] = [];
@@ -26,10 +28,9 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
   ) {
-    const temp = new ProductDisplay();
+    const temp = new Product();
     this.columns =  Object.getOwnPropertyNames(temp);
-    this.columns.splice(this.columns.findIndex(col => col === 'catID'), 1);
-    this.columns.splice(this.columns.findIndex(col => col === 'type'), 1);
+
   }
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class ProductListComponent implements OnInit {
   onDeleteOne(product: Product): void {
     if (window.confirm('Biztosan törli ezt a terméket?')) {
       this.productService.delete(product.id).subscribe(
-        () => this.products$ = this.productService.getAllDisplay()
+        () => this.products$ = this.productService.getAll()
       )
       // this.toastr.showSuccessWithTimeout(`
       // <table class="table">

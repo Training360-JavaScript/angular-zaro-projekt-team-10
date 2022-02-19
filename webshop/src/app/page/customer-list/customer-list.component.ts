@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { Customer, CustomerDisplay } from 'src/app/model/customer';
+import { Customer } from 'src/app/model/customer';
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
@@ -11,7 +11,15 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CustomerListComponent implements OnInit {
 
-  customers$: Observable<CustomerDisplay[]> = new Observable<CustomerDisplay[]>();
+  customers$: Observable<Customer[]> = this.activatedRoute.queryParams.pipe(
+    switchMap((params) => {
+      if(params['actives']) {
+        return this.customerService.actives();
+      } else {
+        return this.customerService.getAll();
+      }
+    }) 
+  );
   columns: string[] = [];
   listName: string = 'customer';
   color: string[] = ['bg-success', 'btn-outline-success'];
@@ -19,32 +27,18 @@ export class CustomerListComponent implements OnInit {
     private customerService: CustomerService,
     private activatedRoute: ActivatedRoute,
   ) {
-    const temp = new CustomerDisplay();
+    const temp = new Customer();
     this.columns =  Object.getOwnPropertyNames(temp);
-    this.columns.splice(this.columns.findIndex(col => col === 'addressID'), 1);
 
-    this.getItems();
   }
 
   ngOnInit(): void {
   }
 
-  getItems(): void {
-    this.customers$ = this.activatedRoute.queryParams.pipe(
-      switchMap((params) => {
-        if(params['actives']) {
-          return this.customerService.getActivesDisplay();
-        } else {
-          return this.customerService.getAllDisplay();
-        }
-      }) 
-    );
-  }
-
   onDeleteOne(customer: Customer): void {
     if (window.confirm('Biztosan törli ezt a terméket?')) {
       this.customerService.delete(customer.id).subscribe(
-        () => this.getItems()
+        () => this.customers$ = this.customerService.getAll()
       )
     }
   }
