@@ -24,7 +24,7 @@ export class CustomerListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onDeleteOne(customer: Customer): void {
+  onDeleteOne(customer: CustomerWithAddress): void {
     if (window.confirm('Biztosan törli ezt a vásárlót?')) {
       this.customerService.delete(customer.id).subscribe(
         () => this.customers$ = this.customerService.addAddress()
