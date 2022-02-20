@@ -1,6 +1,26 @@
 // .bg-success {
 //   background-color: pink !important;
 // }
+
 th {
   cursor: pointer;
+}
+
+.fa {
+  font-size: 1.6rem;
+}
+
+.th_center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.currency_div {
+  min-width: 5rem;
+  text-align: right;
+}
+
+.amount {
+  width: 7rem;
 }

@@ -28,7 +28,7 @@ export class DashboardService {
   }
 
   activeProducts(): Observable<ActiveProducts> {
-    return this.productService.getActivesDisplay().pipe(map((products) => 
+    return this.productService.actives().pipe(map((products) => 
       new ActiveProducts(products.length, products.sort(() => Math.random() - Math.random()).slice(0,5))
     ))
   }

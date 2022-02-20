@@ -25,11 +25,10 @@
       </div>
       <div class="form-group">
         <label for="address-id">Address</label>
-        <input pattern="^[0-9]{0,5}$" [(ngModel)]="customer.addressID" id="address-id" name="address" type="text" class="form-control" #address="ngModel" required>
-      </div>
-      <div class="error-feedback" [hidden]="address.valid || address.pristine">
-        The address length is between 1 and 5 number!
-      </div>
+        <select [(ngModel)]="customer.addressID" id="address-id" name="address" type="text" class="form-control" #address="ngModel" required>
+          <option *ngFor="let address of addresses$ | async" [value]="address.id">{{ address.street }}, {{ address.zip }} / {{ address.city }} ({{ address.country}})</option>
+        </select>
+        </div>
       <div class="form-group">
         <div class="form-check-inline">
           <label class="form-check-label ml-3" for="active-id">

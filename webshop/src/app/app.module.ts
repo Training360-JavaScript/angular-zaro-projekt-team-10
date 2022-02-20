@@ -24,6 +24,9 @@ import { CustomerListComponent } from './page/customer-list/customer-list.compon
 import { OrderListComponent } from './page/order-list/order-list.component';
 import { BillListComponent } from './page/bill-list/bill-list.component';
 import { CategoryListComponent } from './page/category-list/category-list.component';
+import { OrderlineEditorComponent } from './page/orderline-editor/orderline-editor.component';
+import { PaginatorComponent } from './common/paginator/paginator.component';
+import { PaginationPipe } from './pipe/pagination.pipe';
 
 @NgModule({
   declarations: [
@@ -47,13 +50,11 @@ import { CategoryListComponent } from './page/category-list/category-list.compon
     OrderListComponent,
     BillListComponent,
     CategoryListComponent,
+    OrderlineEditorComponent,
+    PaginatorComponent,
+    PaginationPipe,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

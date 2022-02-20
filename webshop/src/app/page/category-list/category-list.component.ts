@@ -27,7 +27,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   onDeleteOne(category: Category): void {
-    if (window.confirm('Biztosan törli ezt a terméket?')) {
+    if (window.confirm('Biztosan törli ezt a kategóriát?')) {
       this.categoryService.delete(category.id).subscribe(
         () => this.categories$ = this.categoryService.getAll()
       )
