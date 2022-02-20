@@ -1,0 +1,14 @@
+<app-generic-table
+  [listName]="orderListName"
+  [entity]="orders$"
+  [columns]="orderColumns"
+  [color]="color"
+  [detailColums]="orderLineColumns"
+  [detailLines]="orderLines"
+  [detailListName]="orderLineListName"
+  (deleteOne)="onDeleteOne($event)"
+  (openDetail)="onOpenDetail($event)"
+  (deleteDetail)="onDeleteDetail($event)"
+  baseUrl="orders"
+>
+</app-generic-table>

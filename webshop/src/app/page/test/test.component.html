@@ -1,6 +1,112 @@
-<h3>One Products:</h3>
-<pre>{{ product | async | json }}</pre>
+<h1>Refresh Nettuts from JSON files</h1>
 
-<button (click)="onAdd()">Add</button>
-<button (click)="onDelete()">Delete</button>
-<button (click)="onUpdate()">Update</button>
+<ul>
+  <li>
+    <h3>1. Addresses:</h3>
+    <ul>
+      <li [classList]=""><input type="checkbox" [checked]="progress.get('address')?.toDeleteDone" readonly disabled> <span>Get list from nettuts</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('address')?.deleteDone" readonly disabled> <span>Delete all from nettuts</span>
+        <span>{{ progress.get('address')?.deleted }} / {{ progress.get('address')?.toDelete?.length }}</span>
+      </li>
+      <li><input type="checkbox" [checked]="progress.get('address')?.toPushDone" readonly disabled> <span>Get List from json-server</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('address')?.pushDone" readonly disabled> <span>Push entites to nettuts</span>
+        <span>{{ progress.get('address')?.pushed }} / {{ progress.get('address')?.toPush?.length }}</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>2. Bills:</h3>
+    <ul>
+      <li><input type="checkbox" [checked]="progress.get('bill')?.toDeleteDone" readonly disabled> <span>Get list from nettuts</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('bill')?.deleteDone" readonly disabled> <span>Delete all from nettuts</span>
+        <span>{{ progress.get('bill')?.deleted }} / {{ progress.get('bill')?.toDelete?.length }}</span>
+      </li>
+      <li><input type="checkbox" [checked]="progress.get('bill')?.toPushDone" readonly disabled> <span>Get List from json-server</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('bill')?.pushDone" readonly disabled> <span>Push entites to nettuts</span>
+        <span>{{ progress.get('bill')?.pushed }} / {{ progress.get('bill')?.toPush?.length }}</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>3. Categories:</h3>
+    <ul>
+      <li><input type="checkbox" [checked]="progress.get('category')?.toDeleteDone" readonly disabled> <span>Get list from nettuts</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('category')?.deleteDone" readonly disabled> <span>Delete all from nettuts</span>
+        <span>{{ progress.get('category')?.deleted }} / {{ progress.get('category')?.toDelete?.length }}</span>
+      </li>
+      <li><input type="checkbox" [checked]="progress.get('category')?.toPushDone" readonly disabled> <span>Get List from json-server</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('category')?.pushDone" readonly disabled> <span>Push entites to nettuts</span>
+        <span>{{ progress.get('category')?.pushed }} / {{ progress.get('category')?.toPush?.length }}</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>4. Customers:</h3>
+    <ul>
+      <li><input type="checkbox" [checked]="progress.get('customer')?.toDeleteDone" readonly disabled> <span>Get list from nettuts</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('customer')?.deleteDone" readonly disabled> <span>Delete all from nettuts</span>
+        <span>{{ progress.get('customer')?.deleted }} / {{ progress.get('customer')?.toDelete?.length }}</span>
+      </li>
+      <li><input type="checkbox" [checked]="progress.get('customer')?.toPushDone" readonly disabled> <span>Get List from json-server</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('customer')?.pushDone" readonly disabled> <span>Push entites to nettuts</span>
+        <span>{{ progress.get('customer')?.pushed }} / {{ progress.get('customer')?.toPush?.length }}</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>5. Orders:</h3>
+    <ul>
+      <li><input type="checkbox" [checked]="progress.get('order')?.toDeleteDone" readonly disabled> <span>Get list from nettuts</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('order')?.deleteDone" readonly disabled> <span>Delete all from nettuts</span>
+        <span>{{ progress.get('order')?.deleted }} / {{ progress.get('order')?.toDelete?.length }}</span>
+      </li>
+      <li><input type="checkbox" [checked]="progress.get('order')?.toPushDone" readonly disabled> <span>Get List from json-server</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('order')?.pushDone" readonly disabled> <span>Push entites to nettuts</span>
+        <span>{{ progress.get('order')?.pushed }} / {{ progress.get('order')?.toPush?.length }}</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>6. Order Lines:</h3>
+    <ul>
+      <li><input type="checkbox" [checked]="progress.get('orderline')?.toDeleteDone" readonly disabled> <span>Get list from nettuts</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('orderline')?.deleteDone" readonly disabled> <span>Delete all from nettuts</span>
+        <span>{{ progress.get('orderline')?.deleted }} / {{ progress.get('orderline')?.toDelete?.length }}</span>
+      </li>
+      <li><input type="checkbox" [checked]="progress.get('orderline')?.toPushDone" readonly disabled> <span>Get List from json-server</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('orderline')?.pushDone" readonly disabled> <span>Push entites to nettuts</span>
+        <span>{{ progress.get('orderline')?.pushed }} / {{ progress.get('orderline')?.toPush?.length }}</span>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <h3>7. Products:</h3>
+    <ul>
+      <li><input type="checkbox" [checked]="progress.get('product')?.toDeleteDone" readonly disabled> <span>Get list from nettuts</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('product')?.deleteDone" readonly disabled> <span>Delete all from nettuts</span>
+        <span>{{ progress.get('product')?.deleted }} / {{ progress.get('product')?.toDelete?.length }}</span>
+      </li>
+      <li><input type="checkbox" [checked]="progress.get('product')?.toPushDone" readonly disabled> <span>Get List from json-server</span></li>
+      <li>
+        <input type="checkbox" [checked]="progress.get('product')?.pushDone" readonly disabled> <span>Push entites to nettuts</span>
+        <span>{{ progress.get('product')?.pushed }} / {{ progress.get('product')?.toPush?.length }}</span>
+      </li>
+    </ul>
+  </li>
+
+</ul>
+
+<button (click)="startProgress()">Start</button>

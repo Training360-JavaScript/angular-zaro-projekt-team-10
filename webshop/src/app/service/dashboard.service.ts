@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Linter } from 'eslint';
 import { forkJoin, map, Observable } from 'rxjs';
 import { ActiveCustomers, ActiveProducts, NewOrders, NotPayedBills, ShippedOrders } from '../model/dashboard';
 import { OrderDisplay } from '../model/order';
@@ -29,7 +28,7 @@ export class DashboardService {
   }
 
   activeProducts(): Observable<ActiveProducts> {
-    return this.productService.actives().pipe(map((products) => 
+    return this.productService.getActivesDisplay().pipe(map((products) => 
       new ActiveProducts(products.length, products.sort(() => Math.random() - Math.random()).slice(0,5))
     ))
   }
@@ -66,7 +65,7 @@ export class DashboardService {
     ]);
 
     return observable.pipe(map((result) => 
-      new NewOrders(
+      new ShippedOrders(
         result[0].length,
         result[0].slice(0,5).map((order) => {
           const customer = result[2].find((cust) => cust.id === order.customerID);

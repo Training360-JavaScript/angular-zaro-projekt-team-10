@@ -1,6 +1,11 @@
 <!-- Add new -->
 <div class="card card-plain mx-3 d-grid gap-2">
-  <button [routerLink]="['/', listName, 'edit', '']" type="button" class="btn fw-bold text-uppercase" [class]="color[1]">
+  <button
+    [routerLink]="['/', listName, 'edit', '']"
+    type="button"
+    class="btn fw-bold text-uppercase"
+    [class]="color[1]"
+  >
     Új elem felvétele
     <i class="fa fa-angle-right mx-2"></i>
   </button>
@@ -9,35 +14,137 @@
 <!-- Search -->
 <div class="mb-5">
   <label for="">Search</label>
-  <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search for...">
+  <input
+    [(ngModel)]="phrase"
+    type="text"
+    class="form-control"
+    placeholder="Search for..."
+  />
 </div>
 
 <table class="table">
   <thead>
     <tr>
-      <th *ngFor="let col of columns" (click)="onSort(col)">
+      <th
+        class=""
+        [ngClass]="{ amount: col === 'amount' }"
+        *ngFor="let col of columns; index as i"
+        draggable="true"
+        (dragstart)="dragStartColumn(i)"
+        (dragover)="allowDrop($event)"
+        (drop)="dropColumn(i, columns)"
+        (click)="onSort(col)"
+      >
         <div class="th_center">
-          <i *ngIf="sorterKey === col && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
-          <i *ngIf="sorterKey === col && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
+          <i
+            *ngIf="sorterKey === col && sorterDirection === 1"
+            class="fa fa-sort-alpha-asc mr-2"
+          ></i>
+          <i
+            *ngIf="sorterKey === col && sorterDirection === -1"
+            class="fa fa-sort-alpha-desc mr-2"
+          ></i>
+
           <span>{{ col | titlecase }}</span>
         </div>
       </th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let e of entity | async | filter:phrase | sorter:sorterKey:sorterDirection">
-      <td *ngFor="let col of columns">
-        {{ e[col] | stringCutter:0:30:col}}
-      </td>
-      <td>
-        <div class="btn-group">
-          <button [routerLink]="['/', listName, 'edit', e.id]" class="btn btn-small" [class]="color[0]"><i
-              class="fa fa-pencil"></i></button>
-          <button *ngIf="e.status!=='stornózott'" (click)="onDelete(e)" class="btn btn-danger">
-            <i class="fa fa-trash"></i>
-          </button>
-        </div>
-      </td>
-    </tr>
+    <ng-container
+      *ngFor="
+        let e of entity
+          | async
+          | filter: phrase
+          | sorter: sorterKey:sorterDirection
+          | pagination: limit:(currentPage$ | async)
+      "
+    >
+      <tr>
+        <td *ngFor="let col of columns">
+          <ng-container *ngIf="e[col] === true">
+            <i
+              class="d-flex justify-content-center fa fa-check-circle-o"
+              aria-hidden="true"
+            ></i>
+          </ng-container>
+          <ng-container *ngIf="e[col] === false">
+            <i
+              class="d-flex justify-content-center fa fa-times-circle"
+              aria-hidden="true"
+            ></i>
+          </ng-container>
+          <ng-container *ngIf="col === 'price' || col === 'amount'">
+            <div class="currency__div d-flex justify-content-end pr-5">
+              {{ e[col] | currency: "HUF":"symbol":"1.0-2":"hu" }}
+            </div>
+          </ng-container>
+          <ng-container
+            *ngIf="
+              e[col] !== false &&
+              e[col] !== true &&
+              col !== 'price' &&
+              col !== 'amount'
+            "
+          >
+            {{ e[col] | stringCutter: 0:30:col }}
+          </ng-container>
+        </td>
+        <td>
+          <div class="btn-group">
+            <button
+              [routerLink]="['/', listName, 'edit', e.id]"
+              class="btn btn-small"
+              [class]="color[0]"
+            >
+              <i class="fa fa-pencil"></i>
+            </button>
+            <button
+              *ngIf="e.status !== 'stornózott'"
+              (click)="onDelete(e)"
+              class="btn btn-danger"
+            >
+              <i class="fa fa-trash"></i>
+            </button>
+            <button
+              *ngIf="detailColums.length > 0"
+              [id]="'detailbutton-' + e.id"
+              (click)="onDetailOpen(e)"
+              class="btn btn-primary"
+              data-toggle="collapse"
+              [attr.data-target]="'#detail-' + e.id"
+              aria-expanded="false"
+              [attr.aria-controls]="'detail-' + e.id"
+            >
+              <i [id]="'detailcaret-' + e.id" class="fa fa-caret-down"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        [id]="'detail-' + e.id"
+        *ngIf="detailColums.length > 0"
+        class="detail collapse"
+      >
+        <td></td>
+        <td [attr.colspan]="columns.length">
+          <app-generic-table
+            [entity]="getDetailLines(e.id)"
+            [listName]="detailListName"
+            [columns]="detailColums"
+            [color]="color"
+            (deleteOne)="onDeleteDetail($event.id)"
+          >
+          </app-generic-table>
+        </td>
+      </tr>
+    </ng-container>
   </tbody>
 </table>
+
+<app-paginator
+  [baseUrl]="baseUrl"
+  [totalRecords]="entity | async | filter: phrase"
+  [curPage]="currentPage$ | async"
+></app-paginator>

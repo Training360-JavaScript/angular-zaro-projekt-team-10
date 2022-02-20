@@ -20,6 +20,13 @@ import { ProductListComponent } from './page/product-list/product-list.component
 import { SorterPipe } from './pipe/sorter.pipe';
 import { StringCutterPipe } from './pipe/string-cutter.pipe';
 import { FilterPipe } from './pipe/filter.pipe';
+import { CustomerListComponent } from './page/customer-list/customer-list.component';
+import { OrderListComponent } from './page/order-list/order-list.component';
+import { BillListComponent } from './page/bill-list/bill-list.component';
+import { CategoryListComponent } from './page/category-list/category-list.component';
+import { OrderlineEditorComponent } from './page/orderline-editor/orderline-editor.component';
+import { PaginatorComponent } from './common/paginator/paginator.component';
+import { PaginationPipe } from './pipe/pagination.pipe';
 
 @NgModule({
   declarations: [
@@ -39,13 +46,15 @@ import { FilterPipe } from './pipe/filter.pipe';
     SorterPipe,
     StringCutterPipe,
     FilterPipe,
+    CustomerListComponent,
+    OrderListComponent,
+    BillListComponent,
+    CategoryListComponent,
+    OrderlineEditorComponent,
+    PaginatorComponent,
+    PaginationPipe,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
