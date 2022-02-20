@@ -1,0 +1,41 @@
+<nav
+  aria-label="Page navigation example pag-nav"
+  *ngIf="totalRecords && totalRecords?.length"
+>
+  <ul class="pagination justify-content-center pag-ul">
+    <li class="page-item" [class.disabled]="!prev">
+      <a
+        *ngIf="prev"
+        class="page-link"
+        tabindex="-1"
+        [routerLink]="['/', baseUrl]"
+        [queryParams]="{ page: prev }"
+        >Previous</a
+      >
+      <a *ngIf="!prev" class="page-link" tabindex="-1">Previous</a>
+    </li>
+    <li
+      *ngFor="let page of createRange(totalPages)"
+      class="page-item"
+      [class.active]="page === curPage"
+    >
+      <a
+        class="page-link"
+        [routerLink]="['/', baseUrl]"
+        [queryParams]="{ page: page }"
+        >{{ page }}</a
+      >
+    </li>
+    <li class="page-item" [class.disabled]="!next">
+      <a
+        *ngIf="next"
+        class="page-link"
+        tabindex="-1"
+        [routerLink]="['/', baseUrl]"
+        [queryParams]="{ page: next }"
+        >Next</a
+      >
+      <a *ngIf="!next" class="page-link" tabindex="-1">Next</a>
+    </li>
+  </ul>
+</nav>

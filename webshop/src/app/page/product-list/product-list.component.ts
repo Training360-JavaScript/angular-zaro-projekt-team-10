@@ -7,18 +7,17 @@ import { ProductService } from 'src/app/service/product.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-
   products$: Observable<Product[]> = this.activatedRoute.queryParams.pipe(
     switchMap((params) => {
-      if(params['actives']) {
+      if (params['actives']) {
         return this.productService.actives();
       } else {
         return this.productService.getAll();
       }
-    }) 
+    })
   );
   columns: string[] = [];
   listName: string = 'product';
@@ -26,22 +25,19 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {
     const temp = new Product();
-    this.columns =  Object.getOwnPropertyNames(temp);
-
+    this.columns = Object.getOwnPropertyNames(temp);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onDeleteOne(product: Product): void {
     if (window.confirm('Biztosan törli ezt a terméket?')) {
-      this.productService.delete(product.id).subscribe(
-        () => this.products$ = this.productService.getAll()
-      )
+      this.productService
+        .delete(product.id)
+        .subscribe(() => (this.products$ = this.productService.getAll()));
     }
   }
-
 }
