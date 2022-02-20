@@ -29,14 +29,13 @@ export class CustomerListComponent implements OnInit {
   ) {
     const temp = new Customer();
     this.columns =  Object.getOwnPropertyNames(temp);
-
   }
 
   ngOnInit(): void {
   }
 
   onDeleteOne(customer: Customer): void {
-    if (window.confirm('Biztosan törli ezt a terméket?')) {
+    if (window.confirm('Biztosan törli ezt a vásárlót?')) {
       this.customerService.delete(customer.id).subscribe(
         () => this.customers$ = this.customerService.getAll()
       )

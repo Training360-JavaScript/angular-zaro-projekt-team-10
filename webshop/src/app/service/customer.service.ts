@@ -14,9 +14,8 @@ export class CustomerService extends BaseService<Customer> {
   }
 
   actives(): Observable<Customer[]> {
-    return this.getAll().pipe(map((customers) => 
-      customers.filter(customer => customer.active)
-    ));
-  }
+    return this.getAll().pipe(map((customers) =>
+    customers.filter(customer => customer.active)
+  ));  }
 
 }
