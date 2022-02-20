@@ -13,6 +13,7 @@ import { CustomerListComponent } from './page/customer-list/customer-list.compon
 import { OrderListComponent } from './page/order-list/order-list.component';
 import { BillListComponent } from './page/bill-list/bill-list.component';
 import { CategoryListComponent } from './page/category-list/category-list.component';
+import { OrderlineEditorComponent } from './page/orderline-editor/orderline-editor.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'categories',
     component: CategoryListComponent,
+  },
+  {
+    path: 'orderline/edit/:id',
+    component: OrderlineEditorComponent,
   },
 ];
 
