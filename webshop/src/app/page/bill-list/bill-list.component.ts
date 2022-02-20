@@ -34,7 +34,7 @@ export class BillListComponent implements OnInit {
   ngOnInit(): void {}
 
   onDeleteOne(bill: Bill): void {
-    if (window.confirm('Biztosan törli ezt a terméket?')) {
+    if (window.confirm('Biztosan törli ezt a számlát?')) {
       this.billService
         .delete(bill.id)
         .subscribe(() => (this.bills$ = this.billService.getAll()));

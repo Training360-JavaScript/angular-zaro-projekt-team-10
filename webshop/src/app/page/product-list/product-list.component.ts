@@ -38,22 +38,6 @@ export class ProductListComponent implements OnInit {
       this.productService
         .delete(product.id)
         .subscribe(() => (this.products$ = this.productService.getAll()));
-      // this.toastr.showSuccessWithTimeout(`
-      // <table class="table">
-      //   <thead>
-      //     <tr>
-      //       <th>Termék azonosítója</th>
-      //     </tr>
-      //   </thead>
-      //   <tbody>
-      //     <tr>
-      //       <td>${product._id}</td>
-      //     </tr>
-      //   </tbody>
-      // </table>
-      // </span>`,
-      //   "A termék sikeresen törlődött:",
-      //   5000)
     }
   }
 }

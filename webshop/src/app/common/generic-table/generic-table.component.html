@@ -26,6 +26,8 @@
   <thead>
     <tr>
       <th
+        class=""
+        [ngClass]="{ amount: col === 'amount' }"
         *ngFor="let col of columns; index as i"
         draggable="true"
         (dragstart)="dragStartColumn(i)"
@@ -42,6 +44,7 @@
             *ngIf="sorterKey === col && sorterDirection === -1"
             class="fa fa-sort-alpha-desc mr-2"
           ></i>
+
           <span>{{ col | titlecase }}</span>
         </div>
       </th>
@@ -60,7 +63,33 @@
     >
       <tr>
         <td *ngFor="let col of columns">
-          {{ e[col] | stringCutter: 0:30:col }}
+          <ng-container *ngIf="e[col] === true">
+            <i
+              class="d-flex justify-content-center fa fa-check-circle-o"
+              aria-hidden="true"
+            ></i>
+          </ng-container>
+          <ng-container *ngIf="e[col] === false">
+            <i
+              class="d-flex justify-content-center fa fa-times-circle"
+              aria-hidden="true"
+            ></i>
+          </ng-container>
+          <ng-container *ngIf="col === 'price' || col === 'amount'">
+            <div class="currency__div d-flex justify-content-end pr-5">
+              {{ e[col] | currency: "HUF":"symbol":"1.0-2":"hu" }}
+            </div>
+          </ng-container>
+          <ng-container
+            *ngIf="
+              e[col] !== false &&
+              e[col] !== true &&
+              col !== 'price' &&
+              col !== 'amount'
+            "
+          >
+            {{ e[col] | stringCutter: 0:30:col }}
+          </ng-container>
         </td>
         <td>
           <div class="btn-group">
