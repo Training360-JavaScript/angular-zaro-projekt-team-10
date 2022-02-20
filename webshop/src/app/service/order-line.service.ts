@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable } from 'rxjs';
-
 import { OrderLine, OrderLineDisplay } from '../model/order-line';
 import { BaseService } from './base.service';
 import { ProductService } from './product.service';

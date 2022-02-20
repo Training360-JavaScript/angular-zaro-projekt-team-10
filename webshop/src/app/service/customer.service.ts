@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable } from 'rxjs';
-
 import { Customer, CustomerDisplay } from '../model/customer';
 import { AddressService } from './address.service';
 import { BaseService } from './base.service';

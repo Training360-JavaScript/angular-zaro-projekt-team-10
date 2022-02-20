@@ -4,7 +4,7 @@ export class Order {
   constructor(
     public id: number = 0,
     public customerID: number = 0,
-    public status: 'new' | 'shipped' | 'paid' = 'new'
+    public status: 'new' | 'shipped' | 'paid' = 'new',
   ) {}
 }
 
@@ -19,6 +19,6 @@ export class OrderDisplay {
     public id: number = 0,
     public customer: string = '',
     public status: 'new' | 'shipped' | 'paid' = 'new',
-    public orderLines: number = 0
+    public orderLines: number = 0,
   ) {}
 }

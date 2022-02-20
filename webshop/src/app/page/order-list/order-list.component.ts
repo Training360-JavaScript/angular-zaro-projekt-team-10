@@ -35,7 +35,7 @@ export class OrderListComponent implements OnInit {
     console.log(this.orderLineColumns);
     this.orderLineColumns.splice(this.orderLineColumns.findIndex(col => col === 'orderID'), 1);
     this.orderLineColumns.splice(this.orderLineColumns.findIndex(col => col === 'productID'), 1);
-
+    
     console.log(this.orderLineColumns);
 
     this.getItems();
@@ -53,9 +53,8 @@ export class OrderListComponent implements OnInit {
         } else {
           return this.orderService.getAllDisplay();
         }
-      }) 
+      })
     )
-  
   }
 
   onDeleteOne(order: Order): void {

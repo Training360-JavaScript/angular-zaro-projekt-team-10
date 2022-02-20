@@ -9,7 +9,7 @@ export class Product {
     public type: string = '',
     public price: number = 0,
     public featured: boolean = false,
-    public active: boolean = true
+    public active: boolean = true,
   ) {}
 }
 
@@ -25,6 +25,6 @@ export class ProductDisplay {
     public type: string = '',
     public price: number = 0,
     public featured: boolean = false,
-    public active: boolean = true
+    public active: boolean = true,
   ) {}
 }

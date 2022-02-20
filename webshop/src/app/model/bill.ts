@@ -5,7 +5,7 @@ export class Bill {
     public id: number = 0,
     public orderID: number = 0,
     public amount: number = 0,
-    public status: 'new' | 'paid' = 'new'
+    public status: 'new' | 'paid' = 'new',
   ) {}
 }
 

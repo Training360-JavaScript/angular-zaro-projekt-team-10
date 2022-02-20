@@ -37,7 +37,7 @@ export class CustomerListComponent implements OnInit {
         } else {
           return this.customerService.getAllDisplay();
         }
-      }) 
+      })
     );
   }
 

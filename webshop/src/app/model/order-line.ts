@@ -5,7 +5,7 @@ export class OrderLine {
     public id: number = 0,
     public orderID: number = 0,
     public productID: number = 0,
-    public amount: number = 0
+    public amount: number = 0,
   ) {}
 }
 
@@ -19,6 +19,6 @@ export class OrderLineDisplay {
     public product: string = '',
     public amount: number = 0,
     public unitPrice: number = 0,
-    public price: number = 0
+    public price: number = 0,
   ) {}
 }

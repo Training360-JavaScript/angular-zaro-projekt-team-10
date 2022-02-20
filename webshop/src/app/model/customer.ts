@@ -7,7 +7,7 @@ export class Customer {
     public lastName: string = '',
     public email: string = '',
     public addressID: number = 0,
-    public active: boolean = false
+    public active: boolean = false,
   ) {}
 }
 
@@ -21,6 +21,6 @@ export class CustomerDisplay {
     public email: string = '',
     public addressID: number = 0,
     public address: string = '',
-    public active: boolean = false
+    public active: boolean = false,
   ) {}
 }

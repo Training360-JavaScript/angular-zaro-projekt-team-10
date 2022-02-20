@@ -34,7 +34,7 @@ export class ProductService extends BaseService<Product> {
             product.type,
             product.price,
             product.featured,
-            product.active
+            product.active,
           );
         })
       })
