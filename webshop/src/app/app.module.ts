@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { OrderListComponent } from './page/order-list/order-list.component';
 import { BillListComponent } from './page/bill-list/bill-list.component';
 import { CategoryListComponent } from './page/category-list/category-list.component';
 import { OrderlineEditorComponent } from './page/orderline-editor/orderline-editor.component';
+import { BarChartComponent } from './common/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -49,12 +51,14 @@ import { OrderlineEditorComponent } from './page/orderline-editor/orderline-edit
     BillListComponent,
     CategoryListComponent,
     OrderlineEditorComponent,
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
