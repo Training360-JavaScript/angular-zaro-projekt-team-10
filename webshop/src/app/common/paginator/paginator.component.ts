@@ -38,10 +38,17 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  createRange(number: number = 0): number[] {
-    const rangeArray = [];
-    for (let i = 0; i < number; i++) {
-      rangeArray.push(i + 1);
+  createRange(): number[] {
+    const rangeArray: number[] = [];
+    let min: number = (this.curPage ?? 1) - 5;
+    min = Math.max(min, 1);
+    let max = min + 10;
+    max = Math.min(max, this.totalPages);
+    if (max === this.totalPages) {
+      min = Math.max(max - 10, 1);
+    }
+    for (let i = min; i <= max; i++) {
+      rangeArray.push(i);
     }
     return rangeArray;
   }

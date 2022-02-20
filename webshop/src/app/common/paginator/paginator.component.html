@@ -15,7 +15,7 @@
       <a *ngIf="!prev" class="page-link" tabindex="-1">Previous</a>
     </li>
     <li
-      *ngFor="let page of createRange(totalPages)"
+      *ngFor="let page of createRange()"
       class="page-item"
       [class.active]="page === curPage"
     >
