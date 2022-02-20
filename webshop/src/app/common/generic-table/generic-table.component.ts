@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { registerLocaleData } from '@angular/common';
+import localeHu from '@angular/common/locales/hu';
+registerLocaleData(localeHu, 'hu');
+
 @Component({
   selector: 'app-generic-table',
   templateUrl: './generic-table.component.html',

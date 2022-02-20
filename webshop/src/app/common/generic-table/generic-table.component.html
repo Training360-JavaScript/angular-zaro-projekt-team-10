@@ -15,9 +15,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th *ngFor="let col of columns;index as i" draggable="true" (dragstart)="dragStartColumn(i)"
+      <th class="" [ngClass]="{'amount': col==='amount'}" *ngFor="let col of columns;index as i" draggable="true" (dragstart)="dragStartColumn(i)"
       (dragover)="allowDrop($event)" (drop)="dropColumn(i, columns)" (click)="onSort(col)">
-        <div class="th_center">
+        <div class="th_center" >
           <i *ngIf="sorterKey === col && sorterDirection === 1" class="fa fa-sort-alpha-asc mr-2"></i>
           <i *ngIf="sorterKey === col && sorterDirection === -1" class="fa fa-sort-alpha-desc mr-2"></i>
           <span>{{ col | titlecase }}</span>
@@ -29,12 +29,15 @@
     <tr *ngFor="let e of entity | async | filter:phrase | sorter:sorterKey:sorterDirection">
       <td *ngFor="let col of columns">
         <ng-container *ngIf="e[col]===true">
-          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          <i class="d-flex justify-content-center fa fa-check-circle-o" aria-hidden="true"></i>
         </ng-container>
         <ng-container *ngIf="e[col]===false">
-          <i class="fa fa-times-circle" aria-hidden="true"></i>
+          <i class="d-flex justify-content-center fa fa-times-circle" aria-hidden="true"></i>
         </ng-container>
-        <ng-container *ngIf="e[col]!==false && e[col]!==true">
+        <ng-container *ngIf="col==='price' || col==='amount'">
+          <div class="currency__div d-flex justify-content-end pr-5">{{ e[col] | currency:'HUF':'symbol':'1.0-2':'hu' }}</div>
+        </ng-container>
+        <ng-container *ngIf="e[col]!==false && e[col]!==true && col!=='price' && col!=='amount'">
           {{ e[col] | stringCutter:0:30:col }}
         </ng-container>
       </td>
