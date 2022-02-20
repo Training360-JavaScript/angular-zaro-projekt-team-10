@@ -1,1 +1,8 @@
-<app-generic-table [listName]="listName" [entity]="products$" [columns]="columns" [color]="color" (deleteOne)="onDeleteOne($event)"></app-generic-table>
+<app-generic-table
+  [listName]="listName"
+  [entity]="products$"
+  [columns]="columns"
+  [color]="color"
+  (deleteOne)="onDeleteOne($event)"
+  baseUrl="products"
+></app-generic-table>
