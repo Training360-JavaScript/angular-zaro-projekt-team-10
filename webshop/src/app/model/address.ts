@@ -7,6 +7,6 @@ export class Address {
     public country: string = '',
     public city: string = '',
     public street: string = '',
-    public notes?: string
-  ) {}
+    public notes?: string,
+  ) { }
 }
