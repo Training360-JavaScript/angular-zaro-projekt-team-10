@@ -18,11 +18,11 @@ export class ProductListComponent implements OnInit {
       } else {
         return this.productService.getAll();
       }
-    }) 
+    })
   );
   columns: string[] = [];
   listName: string = 'product';
-  color: string[] = ['bg-success', 'btn-outline-success'];
+  color: string[] = ['bg-purple', 'btn-outline-success'];
 
   constructor(
     private productService: ProductService,

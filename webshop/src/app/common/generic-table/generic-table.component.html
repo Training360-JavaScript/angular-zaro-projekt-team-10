@@ -1,6 +1,6 @@
 <!-- Add new -->
 <div class="card card-plain mx-3 d-grid gap-2">
-  <button [routerLink]="['/', listName, 'edit', '']" type="button" class="btn fw-bold text-uppercase" [class]="color[1]">
+  <button [routerLink]="['/', listName, 'edit', '']" type="button" class="btn btn-info fw-bold text-uppercase">
     Új elem felvétele
     <i class="fa fa-angle-right mx-2"></i>
   </button>
@@ -46,7 +46,7 @@
         </td>
         <td>
           <div class="btn-group">
-            <button [routerLink]="['/', listName, 'edit', e.id]" class="btn btn-small" [class]="color[0]">
+            <button [routerLink]="['/', listName, 'edit', e.id]" class="btn btn-small" [class]="color[0]" >
               <i class="fa fa-pencil"></i></button>
             <button *ngIf="e.status!=='stornózott'" (click)="onDelete(e)" class="btn btn-danger">
               <i class="fa fa-trash"></i>
