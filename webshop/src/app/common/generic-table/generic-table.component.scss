@@ -1,9 +1,14 @@
-// .bg-success {
-//   background-color: pink !important;
-// }
+.bg-purple {
+  background-color: rgba(156, 39, 176, 0.7) !important;
+}
 
-th {
+th:not(:last-child) {
   cursor: pointer;
+  font-weight: bold;
+}
+
+th:hover:not(:last-child) {
+  box-shadow: rgba(156, 39, 176, 0.7) 0px 50px 26px -28px inset;
 }
 
 .fa {
@@ -24,3 +29,4 @@ th {
 .amount {
   width: 7rem;
 }
+

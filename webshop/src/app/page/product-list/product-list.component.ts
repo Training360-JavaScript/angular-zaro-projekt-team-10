@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   products$: Observable<ProductDisplay[]> = new Observable<ProductDisplay[]>();
   columns: string[] = [];
   listName: string = 'product';
-  color: string[] = ['bg-success', 'btn-outline-success'];
+  color: string[] = ['bg-purple', 'btn-outline-success'];
 
   constructor(
     private productService: ProductService,
@@ -34,10 +34,10 @@ export class ProductListComponent implements OnInit {
   getItems(): void {
     this.products$ = this.activatedRoute.queryParams.pipe(
       switchMap((params) => {
-        return params['actives'] 
-          ? this.productService.getActivesDisplay() 
+        return params['actives']
+          ? this.productService.getActivesDisplay()
           : this.productService.getAllDisplay();
-      }) 
+      })
     );
   }
 
