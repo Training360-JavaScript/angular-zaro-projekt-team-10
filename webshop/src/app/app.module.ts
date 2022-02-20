@@ -55,9 +55,9 @@ import { BarChartComponent } from './common/bar-chart/bar-chart.component';
     OrderlineEditorComponent,
     PaginatorComponent,
     PaginationPipe,
+    BarChartComponent,
   ],
   imports: [
-    BarChartComponent,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
