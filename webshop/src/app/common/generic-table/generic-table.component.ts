@@ -43,12 +43,12 @@ export class GenericTableComponent<
   limit: number = 10;
   @Input('baseUrl') baseUrl: string = '';
 
-  constructor(private router: ActivatedRoute) {
+  constructor(private aRoute: ActivatedRoute) {
     this.hasDetail = this.detailColums && this.detailColums.length > 0;
   }
 
   ngOnInit() {
-    this.currentPage$ = this.router.queryParamMap.pipe(
+    this.currentPage$ = this.aRoute.queryParamMap.pipe(
       map((params: ParamMap) =>
         params.get('page') ? Number(params.get('page')) : 1
       )

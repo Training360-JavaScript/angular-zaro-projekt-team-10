@@ -10,12 +10,24 @@
         tabindex="-1"
         [routerLink]="['/', baseUrl]"
         [queryParams]="{ page: prev }"
-        >Previous</a
-      >
-      <a *ngIf="!prev" class="page-link" tabindex="-1">Previous</a>
+        ><i class="fa fa-backward" aria-hidden="true"></i
+      ></a>
+      <a *ngIf="!prev" class="page-link" tabindex="-1"
+        ><i class="fa fa-backward" aria-hidden="true"></i
+      ></a>
     </li>
+
+    <li *ngIf="firstPage" class="page-item">
+      <a
+        class="page-link"
+        [routerLink]="['/', baseUrl]"
+        [queryParams]="{ page: firstPage }"
+        >{{ firstPage }} ...</a
+      >
+    </li>
+
     <li
-      *ngFor="let page of createRange()"
+      *ngFor="let page of range"
       class="page-item"
       [class.active]="page === curPage"
     >
@@ -26,6 +38,16 @@
         >{{ page }}</a
       >
     </li>
+
+    <li *ngIf="lastPage" class="page-item">
+      <a
+        class="page-link"
+        [routerLink]="['/', baseUrl]"
+        [queryParams]="{ page: lastPage }"
+        >... {{ lastPage }}</a
+      >
+    </li>
+
     <li class="page-item" [class.disabled]="!next">
       <a
         *ngIf="next"
@@ -33,9 +55,11 @@
         tabindex="-1"
         [routerLink]="['/', baseUrl]"
         [queryParams]="{ page: next }"
-        >Next</a
-      >
-      <a *ngIf="!next" class="page-link" tabindex="-1">Next</a>
+        ><i class="fa fa-forward" aria-hidden="true"></i>
+      </a>
+      <a *ngIf="!next" class="page-link" tabindex="-1"
+        ><i class="fa fa-forward" aria-hidden="true"></i>
+      </a>
     </li>
   </ul>
 </nav>
