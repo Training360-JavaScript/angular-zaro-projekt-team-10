@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +28,8 @@ import { CategoryListComponent } from './page/category-list/category-list.compon
 import { OrderlineEditorComponent } from './page/orderline-editor/orderline-editor.component';
 import { PaginatorComponent } from './common/paginator/paginator.component';
 import { PaginationPipe } from './pipe/pagination.pipe';
+import { BarChartComponent } from './common/bar-chart/bar-chart.component';
+import { PieChartComponent } from './common/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -53,8 +56,16 @@ import { PaginationPipe } from './pipe/pagination.pipe';
     OrderlineEditorComponent,
     PaginatorComponent,
     PaginationPipe,
+    BarChartComponent,
+    PieChartComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ChartsModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

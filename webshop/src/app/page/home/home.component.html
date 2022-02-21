@@ -74,4 +74,81 @@
     </div>
   </div>
 
+  <!-- Charts -->
+  <div class="col-12 d-flex flex-row flex-wrap">
+
+    <div class="col-12 my-2">
+      <div class="card card-chart">
+        <div class="card-header card-header-success">
+          <app-bar-chart
+            [barChartLabels]="categoryChartLabels"
+            [barChartData]="categoryChartData"
+            [barChartColor]="categoryChartColor">
+          </app-bar-chart>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Kategóriák</h4>
+          <p class="card-category">
+            <span class="text-success"><i class="fas fa-long-arrow-alt-up"></i> </span> Kategóriák termékszáma
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-xl-4 my-2">
+      <div class="card card-chart">
+        <div class="card-header card-header-primary">
+          <app-bar-chart
+            [barChartLabels]="billChartLabels"
+            [barChartData]="billChartData"
+            [barChartColor]="billChartColor">
+          </app-bar-chart>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Számlák</h4>
+          <p class="card-category">
+            <span class="text-primary"><i class="fas fa-long-arrow-alt-up"></i> </span> Számlák státusza
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-xl-4 my-2">
+      <div class="card card-chart">
+        <div class="card-header card-header-info">
+          <app-pie-chart
+            [pieChartLabels]="billSumChartLabels"
+            [pieChartData]="billSumChartData"
+            [pieChartColor]="billSumChartColor">
+          </app-pie-chart>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Számlák</h4>
+          <p class="card-category">
+            <span class="text-info"><i class="fas fa-long-arrow-alt-up"></i> </span> Számlák összege státusz alapján
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-xl-4 my-2">
+      <div class="card card-chart">
+        <div class="card-header card-header-warning">
+          <app-pie-chart
+            [pieChartLabels]="customerChartLabels"
+            [pieChartData]="customerChartData"
+            [pieChartColor]="customerChartColor">
+          </app-pie-chart>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Vásárlók</h4>
+          <p class="card-category">
+            <span class="text-warning"><i class="fa fa-long-arrow-alt-up"></i> </span> Aktív és inaktív vásárlók
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
