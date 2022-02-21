@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paginator',
@@ -15,19 +14,12 @@ export class PaginatorComponent implements OnInit {
   next: number | null = null;
   totalPages: number = 0;
   numOfAllRecords: number = 0;
-  lastPage: number | null = null;
-  firstPage: number | null = 1;
-  range: number[] = [];
 
   @Input('totalRecords') set totalRecordsChanged(records: any[]) {
     this.totalRecords = records;
     this.numOfAllRecords = records ? records.length : 0;
     this.totalPages = Math.ceil(this.numOfAllRecords / this.perPage);
-    if (this.curPage && this.curPage > this.totalPages) {
-      this.router.navigate(['/', this.baseUrl], { queryParams: { page: 1 } });
-    }
     this.setPaginator();
-    this.setRange();
   }
 
   @Input('curPage') set curPageChanged(page: number | null) {
@@ -40,38 +32,25 @@ export class PaginatorComponent implements OnInit {
     }
 
     this.setPaginator();
-    this.setRange();
   }
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  setRange(): void {
+  createRange(): number[] {
     const rangeArray: number[] = [];
     let min: number = (this.curPage ?? 1) - 5;
     min = Math.max(min, 1);
     let max = min + 10;
     max = Math.min(max, this.totalPages);
-
     if (max === this.totalPages) {
       min = Math.max(max - 10, 1);
-      this.lastPage = null;
-    } else {
-      this.lastPage = this.totalPages;
     }
-
-    if (min === 1) {
-      this.firstPage = null;
-    } else {
-      this.firstPage = 1;
-    }
-
     for (let i = min; i <= max; i++) {
       rangeArray.push(i);
     }
-
-    this.range = rangeArray;
+    return rangeArray;
   }
 
   setPaginator() {
