@@ -1,6 +1,10 @@
 <!-- Add new -->
 <div class="card card-plain mx-3 d-grid gap-2">
-  <button [routerLink]="['/', listName, 'edit', '']" type="button" class="btn btn-info fw-bold text-uppercase">
+  <button
+    [routerLink]="['/', listName, 'edit', '']"
+    type="button"
+    class="btn btn-info fw-bold text-uppercase"
+  >
     Új elem felvétele
     <i class="fa fa-angle-right mx-2"></i>
   </button>
@@ -51,9 +55,9 @@
       *ngFor="
         let e of entity
           | async
-          | pagination: limit:(currentPage$ | async)
           | filter: phrase
           | sorter: sorterKey:sorterDirection
+          | pagination: limit:(currentPage$ | async)
       "
     >
       <tr>
@@ -70,12 +74,23 @@
               aria-hidden="true"
             ></i>
           </ng-container>
-          <ng-container *ngIf="col==='price' || (col==='amount' && listName == 'bill')">
-            <div class="currency__div d-flex justify-content-end pr-5">{{ e[col] | currency:'HUF':'symbol':'1.0-2':'hu' }}</div>
+          <ng-container
+            *ngIf="col === 'price' || (col === 'amount' && listName == 'bill')"
+          >
+            <div class="currency__div d-flex justify-content-end pr-5">
+              {{ e[col] | currency: "HUF":"symbol":"1.0-2":"hu" }}
+            </div>
           </ng-container>
-          <ng-container *ngIf="(e[col]!==false && e[col]!==true && col!=='price' && col!=='amount') ||
-          (listName==='orderline' && col==='amount')">
-            {{ e[col] | stringCutter:0:30:col }}
+          <ng-container
+            *ngIf="
+              (e[col] !== false &&
+                e[col] !== true &&
+                col !== 'price' &&
+                col !== 'amount') ||
+              (listName === 'orderline' && col === 'amount')
+            "
+          >
+            {{ e[col] | stringCutter: 0:30:col }}
           </ng-container>
         </td>
         <td>
