@@ -51,9 +51,9 @@
       *ngFor="
         let e of entity
           | async
+          | pagination: limit:(currentPage$ | async)
           | filter: phrase
           | sorter: sorterKey:sorterDirection
-          | pagination: limit:(currentPage$ | async)
       "
     >
       <tr>
